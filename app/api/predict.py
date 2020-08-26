@@ -9,12 +9,8 @@ log = logging.getLogger(__name__)
 router = APIRouter()
 
 
-class Item(BaseModel):
+class BnB(BaseModel):
     """Use this data model to parse the request body JSON."""
-
-    x1: float = Field(..., example=3.14)
-    x2: int = Field(..., example=-42)
-    x3: str = Field(..., example='banjo')
     accomodates: int
     bathrooms: float
     bedrooms: int
@@ -27,39 +23,37 @@ class Item(BaseModel):
         """Convert pydantic object to pandas dataframe with 1 row."""
         return pd.DataFrame([dict(self)])
 
-    @validator('x1')
-    def x1_must_be_positive(cls, value):
-        """Validate that x1 is a positive number."""
-        assert value > 0, f'x1 == {value}, must be > 0'
-        return value
-
-
 @router.post('/predict')
-async def predict(item: Item):
+async def predict(bnb: BnB):
     """
-    Make random baseline predictions for classification problem 🔮
+    Make predictions of air bnb optimal prices
 
     ### Request Body
-    - `x1`: positive float
-    - `x2`: integer
-    - `x3`: string
+    - accomodates: int
+    - bathrooms: float
+    - bedrooms: int
+    - beds: int
+    - guests_included: int
+    - min_nights: int
+    - max_nights: int
 
     ### Response
-    - `prediction`: boolean, at random
-    - `predict_proba`: float between 0.5 and 1.0, 
+    - `prediction`: optimal price for air bnb with these characteristics
     representing the predicted class's probability
 
     Replace the placeholder docstring and fake predictions with your own model.
     """
-
-    X_new = item.to_df()
+    X_new = bnb.to_df()
     log.info(X_new)
-    y_pred = random.choice([True, False])
-    y_pred_proba = random.random() / 2 + 0.5
+    acc = X_new['accomodates']
+    baths = X_new['bathrooms']
+    bedrooms = X_new['bedrooms']
+    beds = X_new['beds']
+    guests = X_new['guests_included']
+    min_n = X_new['min_nights']
+    max_n = X_new['max_nights']
     
+    #optimal_price = new_model.predict(X_new)
+    y_pred = (acc*10) + (baths*10) + (bedrooms*10) + (beds*10) + (guests*10)
     
-    baseline_pred = 100
-    
-    return {
-        'prediction': baseline_pred
-    }
+    return {'predicted_price': y_pred}
