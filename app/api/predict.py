@@ -12,9 +12,9 @@ router = APIRouter()
 class Item(BaseModel):
     """Use this data model to parse the request body JSON."""
 
-    '''x1: float = Field(..., example=3.14)
+    x1: float = Field(..., example=3.14)
     x2: int = Field(..., example=-42)
-    x3: str = Field(..., example='banjo')'''
+    x3: str = Field(..., example='banjo')
     accomodates: int
     bathrooms: float
     bedrooms: int
