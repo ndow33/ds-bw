@@ -1,5 +1,7 @@
 import logging
 import random
+import pickle
+import sklearn
 
 from fastapi import APIRouter
 import pandas as pd
@@ -45,6 +47,7 @@ async def predict(bnb: BnB):
     """
     X_new = bnb.to_df()
     log.info(X_new)
+
     acc = X_new['accomodates']
     baths = X_new['bathrooms']
     bedrooms = X_new['bedrooms']
@@ -55,5 +58,14 @@ async def predict(bnb: BnB):
     
     #optimal_price = new_model.predict(X_new)
     y_pred = (acc*10) + (baths*10) + (bedrooms*10) + (beds*10) + (guests*10)
+
+
+    filename = 'finalized_model.sav'
+    loaded_model = pickle.load(open(filename, 'rb'))
+
+    pred = loaded_model.predict(X_new)
+
+    #test = [[2, 1, 1, 1, 6, 6, 7]]
+    #test_pred = loaded_model.predict(test)
     
-    return {'predicted_price': y_pred}
+    return {'predicted_price': pred[0]}
