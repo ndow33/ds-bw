@@ -1,12 +1,10 @@
-# DS Build Week scaffold
+# Index
 
 - [Tech stack](#tech-stack)
 - [Getting started](#getting-started)
 - [File structure](#file-structure)
 - [More instructions](#more-instructions)
 - [Deploying to Heroku](#deploying-to-heroku)
-- [Example: Data visualization](#example-data-visualization)
-- [Example: Machine learning](#example-machine-learning)
 
 ## Tech stack
 - [FastAPI](https://fastapi.tiangolo.com/): Web framework. Like Flask, but faster, with automatic interactive docs.
