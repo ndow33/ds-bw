@@ -5,8 +5,8 @@ import uvicorn
 from app.api import predict, viz
 
 app = FastAPI(
-    title='DS API',
-    description='Lorem ipsum',
+    title='AirBnB Price Predictor API',
+    description='Using a linear regression model from scikit-learn, we are able to predict how much an AirBnB will cost',
     version='0.1',
     docs_url='/',
 )
