@@ -11,7 +11,6 @@
 - [Flake8](https://flake8.pycqa.org/en/latest/): Linter, enforces PEP8 style guide.
 - [Heroku](https://devcenter.heroku.com/): Platform as a service, hosts your API.
 - [Pipenv](https://pipenv.pypa.io/en/latest/): Reproducible virtual environment, manages dependencies.
-- [Plotly](https://plotly.com/python/): Visualization library, for Python & JavaScript.
 - [Pytest](https://docs.pytest.org/en/stable/): Testing framework, runs your unit tests.
 
 ## Getting started
